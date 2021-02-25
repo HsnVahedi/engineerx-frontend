@@ -11,12 +11,12 @@ pipeline {
                 }
             }
         }
-        // stage ('Invoke Unittest Pipeline') {
-        //     steps {
-        //         build job: 'engineerx-frontend-unittest', parameters: [
-        //             string(name: "FRONTEND_VERSION", value: "${env.BUILD_ID}")
-        //         ]
-        //     }
-        // }
+        stage ('Invoke Unittest Pipeline') {
+            steps {
+                build job: 'engineerx-frontend-unittest', parameters: [
+                    string(name: "FRONTEND_VERSION", value: "${env.BUILD_ID}")
+                ]
+            }
+        }
     }
 }
