@@ -35,6 +35,7 @@ const useImageBlockStyles = makeStyles((theme) => ({
 export const ImageBlock = ({ block }) => {
   const backendUrl = getBackendUrl();
   const classes = useImageBlockStyles();
+
   if (block) {
     const image = block.image;
     return (
