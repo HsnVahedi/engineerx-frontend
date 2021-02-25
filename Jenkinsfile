@@ -4,7 +4,7 @@ pipeline {
         stage('Build Frontend Microservice') {
             steps {
                 script {
-                    withDockerRegistry([ credentialsId: "dockerhub-credentials", url: "" ]) {
+                    withDockerRegistry([ credentialsId: "dockerhub-repo", url: "" ]) {
                         def frontendImage = docker.build("hsndocker/frontend:${env.BUILD_ID}")
                         frontendImage.push()
                     }
