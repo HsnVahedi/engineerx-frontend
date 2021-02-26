@@ -1,5 +1,7 @@
 FROM node:lts-alpine3.13
 
+EXPOSE 3000
+
 # Create app directory
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
