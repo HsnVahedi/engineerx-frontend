@@ -9,7 +9,7 @@ const Avatar = ({ user, ...rest }) => {
       return (
         <MuiAvatar
           alt={`${user.firstname} ${user.lastname}`}
-          src={`${backendUrl}${user.url}`}
+          src={`${user.url}`}
           {...rest}
         />
       );

@@ -34,7 +34,7 @@ const PostCard = ({ post }) => {
   const cardMedia = post.image16x9 ? (
     <CardMedia
       className={classes.media}
-      image={`${backendUrl}${post.image16x9.url}`}
+      image={`${post.image16x9.url}`}
     ></CardMedia>
   ) : (
     <CardMedia style={{ textAlign: "center" }} className={classes.media}>

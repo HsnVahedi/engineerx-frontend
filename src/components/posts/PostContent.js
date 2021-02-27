@@ -48,7 +48,7 @@ export const ImageBlock = ({ block }) => {
           p={1}
         >
           <Image
-            src={`${backendUrl}${image.url}`}
+            src={`${image.url}`}
             alt={image.alt}
             width={image.width}
             height={image.height}

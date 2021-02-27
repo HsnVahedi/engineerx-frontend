@@ -76,7 +76,7 @@ const PostHeader = ({ post }) => {
   const wallpaper = image ? (
     <div
       className={classes.cover}
-      style={{ backgroundImage: `url(${backendUrl}${image.url})` }}
+      style={{ backgroundImage: `url(${image.url})` }}
     ></div>
   ) : (
     <div className={classes.cover}></div>
