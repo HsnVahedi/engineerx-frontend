@@ -48,6 +48,7 @@ export const ImageBlock = ({ block }) => {
           p={1}
         >
           <Image
+	    unoptimized={true}
             src={`${backendUrl}${image.url}`}
             alt={image.alt}
             width={image.width}
