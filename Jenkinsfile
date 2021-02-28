@@ -11,6 +11,16 @@ pipeline {
                 }
             }
         }
+        stage('Build Ingress Microservice') {
+            steps {
+                script {
+                    withDockerRegistry([ credentialsId: "dockerhub-repo", url: "" ]) {
+                        def frontendImage = docker.build("hsndocker/nginx:${env.BUILD_ID}")
+                        frontendImage.push()
+                    }
+                }
+            }
+        }
         stage ('Invoke Unittest Pipeline') {
             steps {
                 build job: 'engineerx-frontend-unittest', parameters: [
