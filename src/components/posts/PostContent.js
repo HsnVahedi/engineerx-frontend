@@ -48,7 +48,7 @@ export const ImageBlock = ({ block }) => {
           p={1}
         >
           <Image
-            src={`backendingress${image.url}`}
+            src={`http://backendingress${image.url}`}
             alt={image.alt}
             width={image.width}
             height={image.height}
