@@ -49,7 +49,7 @@ export const ImageBlock = ({ block }) => {
         >
           <Image
 	    unoptimized={true}
-            src={`${image.url}`}
+            src={`backendingress${image.url}`}
             alt={image.alt}
             width={image.width}
             height={image.height}
