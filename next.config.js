@@ -45,10 +45,10 @@ module.exports = (phase, { defaultConfig }) => {
     },
     env: {
       backendUrl: process.env.LOCAL ? "http://127.0.0.1:8000" : `http://${process.env.BACKEND_URL}:${process.env.BACKEND_PORT}`,
-      frontendUrl: process.env.INTEGRATION_TEST
-        ? `http://${process.env.BACKEND_URL}:${process.env.BACKEND_PORT}`
-        : process.env.LOCAL
+      frontendUrl: process.env.LOCAL
         ? "http://127.0.0.1:8000"
+        : process.env.INTEGRATION_TEST
+        ? `http://${process.env.BACKEND_URL}:${process.env.BACKEND_PORT}`
         : "",
     },
   };
