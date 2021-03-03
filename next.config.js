@@ -39,7 +39,7 @@ module.exports = (phase, { defaultConfig }) => {
     ...config,
     images: {
       ...config.images,
-      domains: ["backendingress"],
+      domains: [`${process.env.BACKEND_URL}`],
     },
     env: {
       backendUrl: `http://${process.env.BACKEND_URL}:${process.env.BACKEND_PORT}`,
