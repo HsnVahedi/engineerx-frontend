@@ -23,7 +23,7 @@ module.exports = (phase, { defaultConfig }) => {
       },
       env: {
         backendUrl: "http://127.0.0.1:8000",
-	frontendUrl: "http://127.0.0.1:8000"
+        frontendUrl: "http://127.0.0.1:8000",
       },
     };
   } else if (phase === "jest") {
@@ -31,21 +31,25 @@ module.exports = (phase, { defaultConfig }) => {
       ...config,
       env: {
         backendUrl: "",
-	frontendUrl: "",
+        frontendUrl: "",
       },
     };
-  }
+  } 
 
   return {
-    /* config options for all phases except development here */
+    /* config options for production: npm start */
     ...config,
     images: {
       ...config.images,
-      domains: [`${process.env.BACKEND_URL}`],
+      domains: [`${process.env.BACKEND_URL}`, "127.0.0.1"],
     },
     env: {
-      backendUrl: `http://${process.env.BACKEND_URL}:${process.env.BACKEND_PORT}`,
-      frontendUrl: process.env.INTEGRATION_TEST ? `http://${process.env.BACKEND_URL}:${process.env.BACKEND_PORT}` : "",
+      backendUrl: process.env.LOCAL ? "http://127.0.0.1:8000" : `http://${process.env.BACKEND_URL}:${process.env.BACKEND_PORT}`,
+      frontendUrl: process.env.INTEGRATION_TEST
+        ? `http://${process.env.BACKEND_URL}:${process.env.BACKEND_PORT}`
+        : process.env.LOCAL
+        ? "http://127.0.0.1:8000"
+        : "",
     },
   };
 };
