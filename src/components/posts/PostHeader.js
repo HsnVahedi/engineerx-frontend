@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Box,
   Container,
@@ -10,7 +10,7 @@ import {
 } from "@material-ui/core";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import OwnerAvatar from "../Avatar";
-import { getBackendUrl } from "../../modules/urls";
+import { getBackendUrl, getFrontendUrl } from "../../modules/urls";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -69,6 +69,7 @@ const useStyles = makeStyles((theme) => ({
 
 const PostHeader = ({ post }) => {
   const backendUrl = getBackendUrl();
+  const frontendUrl = getFrontendUrl();
   const classes = useStyles();
   const image = post.image16x9;
   const owner = post.owner;
@@ -76,7 +77,7 @@ const PostHeader = ({ post }) => {
   const wallpaper = image ? (
     <div
       className={classes.cover}
-      style={{ backgroundImage: `url(${image.url})` }}
+      style={{ backgroundImage: `url(${frontendUrl}${image.url})` }}
     ></div>
   ) : (
     <div className={classes.cover}></div>

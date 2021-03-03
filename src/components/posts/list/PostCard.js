@@ -10,7 +10,7 @@ import {
 } from "@material-ui/core";
 import OwnerAvatar from "../../Avatar";
 import Tag from "../Tag";
-import { getBackendUrl } from "../../../modules/urls";
+import { getBackendUrl, getFrontendUrl } from "../../../modules/urls";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -29,12 +29,13 @@ const useStyles = makeStyles((theme) => ({
 
 const PostCard = ({ post }) => {
   const backendUrl = getBackendUrl();
+  const frontendUrl = getFrontendUrl();
   const classes = useStyles();
 
   const cardMedia = post.image16x9 ? (
     <CardMedia
       className={classes.media}
-      image={`${post.image16x9.url}`}
+      image={`${frontendUrl}${post.image16x9.url}`}
     ></CardMedia>
   ) : (
     <CardMedia style={{ textAlign: "center" }} className={classes.media}>

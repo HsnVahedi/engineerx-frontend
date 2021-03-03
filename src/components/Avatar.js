@@ -1,15 +1,16 @@
 import { Avatar as MuiAvatar } from "@material-ui/core";
 import { getAvatarFromName } from "../modules/avatars";
-import { getBackendUrl } from "../modules/urls";
+import { getBackendUrl, getFrontendUrl } from "../modules/urls";
 
 const Avatar = ({ user, ...rest }) => {
   const backendUrl = getBackendUrl();
+  const frontendUrl = getFrontendUrl();
   if (user) {
     if (user.url) {
       return (
         <MuiAvatar
           alt={`${user.firstname} ${user.lastname}`}
-          src={`${user.url}`}
+          src={`${frontendUrl}${user.url}`}
           {...rest}
         />
       );
