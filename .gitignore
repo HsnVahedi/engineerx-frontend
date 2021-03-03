@@ -33,3 +33,9 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# cypress
+cypress.json
+cypress/
+
+package.json.back
