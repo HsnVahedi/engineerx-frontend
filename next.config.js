@@ -23,6 +23,7 @@ module.exports = (phase, { defaultConfig }) => {
       },
       env: {
         backendUrl: "http://127.0.0.1:8000",
+	frontendUrl: "http://127.0.0.1:8000"
       },
     };
   } else if (phase === "jest") {
@@ -30,6 +31,7 @@ module.exports = (phase, { defaultConfig }) => {
       ...config,
       env: {
         backendUrl: "",
+	frontendUrl: "",
       },
     };
   }
@@ -43,6 +45,7 @@ module.exports = (phase, { defaultConfig }) => {
     },
     env: {
       backendUrl: `http://${process.env.BACKEND_URL}:${process.env.BACKEND_PORT}`,
+      frontendUrl: process.env.INTEGRATION_TEST ? `http://${process.env.BACKEND_URL}:${process.env.BACKEND_PORT}` : "",
     },
   };
 };
