@@ -36,8 +36,8 @@ module.exports = (phase, { defaultConfig }) => {
     };
   }
 
-  print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-  print(
+  console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+  console.log(
     `${process.env.BACKEND_URL}, ${process.env.LOCAL}, ${process.env.INTEGRATION_TEST}, `
   );
   return {
