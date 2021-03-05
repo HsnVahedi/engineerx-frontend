@@ -34,21 +34,29 @@ module.exports = (phase, { defaultConfig }) => {
         frontendUrl: "",
       },
     };
-  } 
+  }
 
+  print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+  print(
+    `${process.env.BACKEND_URL}, ${process.env.LOCAL}, ${process.env.INTEGRATION_TEST}, `
+  );
   return {
-    /* config options for production: npm start */
+    /* config options for production: npm build and npm start */
     ...config,
     images: {
       ...config.images,
-      domains: [`${process.env.BACKEND_URL}`, "127.0.0.1"],
+      domains: [`${process.env.BACKEND_URL}`, "127.0.0.1", "localhost"],
     },
     env: {
-      backendUrl: process.env.LOCAL ? "http://127.0.0.1:8000" : `http://${process.env.BACKEND_URL}:${process.env.BACKEND_PORT}`,
+      backendUrl: process.env.LOCAL
+        ? "http://127.0.0.1:8000"
+        : process.env.INTEGRATION_TEST
+        ? "http://localhost:8001"
+        : `http://${process.env.BACKEND_URL}:${process.env.BACKEND_PORT}`,
       frontendUrl: process.env.LOCAL
         ? "http://127.0.0.1:8000"
         : process.env.INTEGRATION_TEST
-        ? `http://${process.env.BACKEND_URL}:${process.env.BACKEND_PORT}`
+        ? "http://localhost:8001"
         : "",
     },
   };
