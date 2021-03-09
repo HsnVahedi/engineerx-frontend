@@ -31,5 +31,19 @@ pipeline {
                 ]
             }
         }
+        stage('Invoke Integration Test Pipeline') {
+            steps {
+                build job: 'integration-test', parameters: [
+                    string(name: "FRONTEND_VERSION", value: "${env.BUILD_ID}")
+                ]
+            }
+        }
+        stage('Invoke Setting latest tags') {
+            steps {
+                build job: 'frontend-latest-tag', parameters: [
+                    string(name: "FRONTEND_VERSION", value: "${env.BUILD_ID}")
+                ]
+            }
+        }
     }
 }
