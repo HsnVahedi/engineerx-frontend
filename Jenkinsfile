@@ -26,7 +26,7 @@ pipeline {
         }
         stage ('Invoke Unittest Pipeline') {
             steps {
-                build job: 'engineerx-frontend-unittest', parameters: [
+                build job: 'frontend-test', parameters: [
                     string(name: "FRONTEND_VERSION", value: "${env.BUILD_ID}")
                 ]
             }
