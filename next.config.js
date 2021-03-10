@@ -36,10 +36,6 @@ module.exports = (phase, { defaultConfig }) => {
     };
   }
 
-  console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-  console.log(
-    `${process.env.BACKEND_URL}, ${process.env.LOCAL}, ${process.env.INTEGRATION_TEST}, `
-  );
   return {
     /* config options for production: npm build and npm start */
     ...config,
