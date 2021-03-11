@@ -38,36 +38,41 @@ export const ImageBlock = ({ block }) => {
 
   if (block) {
     const image = block.image;
-    return (
-      <Box display="flex" justifyContent="center" flexWrap="wrap">
-        <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          flexGrow={1}
-          p={1}
-        >
-          <Image
-            src={`${backendUrl}${image.url}`}
-            alt={image.alt}
-            width={image.width}
-            height={image.height}
-          />
-        </Box>
-        <Box
-          className={classes.paragraphBox}
-          display="flex"
-          flexGrow={1}
-          flexDirection="column"
-          justifyContent="center"
-          p={1}
-        >
-          <Box className={classes.paragraph}>
-            {ReactHtmlParser(block.paragraph)}
+    if (image) {
+      return (
+        <Box display="flex" justifyContent="center" flexWrap="wrap">
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            flexGrow={1}
+            p={1}
+          >
+            <Image
+              src={`${backendUrl}${image.url}`}
+              alt={image.alt}
+              width={image.width}
+              height={image.height}
+            />
+          </Box>
+          <Box
+            className={classes.paragraphBox}
+            display="flex"
+            flexGrow={1}
+            flexDirection="column"
+            justifyContent="center"
+            p={1}
+          >
+            <Box className={classes.paragraph}>
+              {ReactHtmlParser(block.paragraph)}
+            </Box>
           </Box>
         </Box>
-      </Box>
-    );
+      );
+    } else {
+      return null;
+    }
+
   } else {
     return null;
   }

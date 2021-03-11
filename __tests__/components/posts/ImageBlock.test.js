@@ -20,11 +20,11 @@ describe("<ImageBlock />", () => {
   it("renders when paragraph is not defined", () => {
     render(<ImageBlock block={{ image }} />);
   });
-  //   it("wraps given html in a <div />", () => {
-  //     const html = "<p>Hello</p>";
-  //     const { container } = render(
-  //       <ParagraphBlock block={{ paragraph: html }} />
-  //     );
-  //     expect(container.querySelector("div").innerHTML).toBe(html);
-  //   });
+  it("returns null when block.image is undefined", () => {
+    const html = "<p>Hello</p>";
+    const { container } = render(
+      <ImageBlock block={{ paragraph: html }} />
+    );
+    expect(container).toBeEmptyDOMElement();
+  });
 });

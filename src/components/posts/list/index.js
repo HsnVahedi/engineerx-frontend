@@ -41,12 +41,8 @@ export const Posts = ({ posts, size, page, totalCount, tagname }) => {
   const classes = useStyles();
   const router = useRouter();
   return (
-    <div className={classes.root}>
+    <div className={classes.root} >
       <Container maxWidth="lg">
-        {/* <Header />
-      <Box mt={3}>
-        <Filter />
-      </Box> */}
         <Box mt={6}>
           <Box
             display="flex"

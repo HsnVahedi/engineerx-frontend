@@ -59,7 +59,6 @@ const PostCard = ({ post }) => {
           <Box ml={2}>
             <Link href={`/posts/${post.slug}`}>
             <a>
-            {/* {post.title} */}
             <h4 color="textPrimary">{post.title}</h4>
             </a>
             </Link>

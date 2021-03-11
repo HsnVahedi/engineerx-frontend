@@ -5,7 +5,7 @@ import faker from "faker";
 
 let post;
 
-describe("<Section />", () => {
+describe("<PostContent />", () => {
   beforeAll(() => {
     post = {
       title: faker.lorem.word(),

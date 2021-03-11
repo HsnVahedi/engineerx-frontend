@@ -2,13 +2,10 @@ import React from "react";
 import {
   Box,
   Container,
-  IconButton,
-  Tooltip,
   Typography,
   colors,
   makeStyles,
 } from "@material-ui/core";
-import MoreIcon from "@material-ui/icons/MoreVert";
 import OwnerAvatar from "../Avatar";
 import { getBackendUrl, getFrontendUrl } from "../../modules/urls";
 
@@ -98,11 +95,6 @@ const PostHeader = ({ post }) => {
             </Typography>
           </Box>
           <Box flexGrow={1} />
-          <Tooltip title="More options">
-            <IconButton className={classes.action}>
-              <MoreIcon />
-            </IconButton>
-          </Tooltip>
         </Box>
       </Container>
     </div>
