@@ -50,5 +50,12 @@ pipeline {
                 ]
             }
         }
+        stage('Invoke Production Deployment') {
+            steps {
+                build job: 'aws-deployment', parameters: [
+                    string(name: "FRONTEND_VERSION", value: "${env.BUILD_ID}")
+                ]
+            }
+        }
     }
 }
