@@ -9,7 +9,7 @@ pipeline {
         CLUSTER_NAME = "${params.CLUSTER_NAME}"
     }
     stages {
-        stage('Build Backend Images') {
+        stage('Build Frontend Images') {
             parallel {
                 stage('Build Frontend Microservice') {
                     steps {
