@@ -1,5 +1,13 @@
 pipeline {
     agent any
+    parameters {
+        string(name: 'CLUSTER_NAME', defaultValue: 'engineerx')
+        string(name: 'REGION', defaultValue: 'us-east-2')
+    }
+    environment {
+        REGION = "${params.REGION}"
+        CLUSTER_NAME = "${params.CLUSTER_NAME}"
+    }
     stages {
         stage('Build Backend Images') {
             parallel {
@@ -32,14 +40,18 @@ pipeline {
         stage ('Invoke Unittest Pipeline') {
             steps {
                 build job: 'frontend-test', parameters: [
-                    string(name: "FRONTEND_VERSION", value: "${env.BUILD_ID}")
+                    string(name: "FRONTEND_VERSION", value: "${env.BUILD_ID}"),
+                    string(name: "REGION", value: "${env.REGION}"),
+                    string(name: "CLUSTER_NAME", value: "${env.CLUSTER_NAME}")
                 ]
             }
         }
         stage('Invoke Integration Test Pipeline') {
             steps {
                 build job: 'integration-test', parameters: [
-                    string(name: "FRONTEND_VERSION", value: "${env.BUILD_ID}")
+                    string(name: "FRONTEND_VERSION", value: "${env.BUILD_ID}"),
+                    string(name: "REGION", value: "${env.REGION}"),
+                    string(name: "CLUSTER_NAME", value: "${env.CLUSTER_NAME}")
                 ]
             }
         }
@@ -53,7 +65,9 @@ pipeline {
         stage('Invoke Production Deployment') {
             steps {
                 build job: 'aws-deployment', parameters: [
-                    string(name: "FRONTEND_VERSION", value: "${env.BUILD_ID}")
+                    string(name: "FRONTEND_VERSION", value: "${env.BUILD_ID}"),
+                    string(name: "REGION", value: "${env.REGION}"),
+                    string(name: "CLUSTER_NAME", value: "${env.CLUSTER_NAME}")
                 ]
             }
         }
