@@ -146,7 +146,7 @@ export const Tags = ({ tags }) => {
 const PostContent = ({ post }) => {
   return (
     <Container maxWidth="lg">
-      <Box mt={10} mb={1}>
+      <Box mt={100} mb={1}>
         <Typography variant="h1" color="textPrimary">
           {post.title}
         </Typography>
