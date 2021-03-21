@@ -19,11 +19,11 @@ module.exports = (phase, { defaultConfig }) => {
       ...config,
       images: {
         ...config.images,
-        domains: ["127.0.0.1"],
+        domains: ["localhost"],
       },
       env: {
-        backendUrl: "http://127.0.0.1:8000",
-        frontendUrl: "http://127.0.0.1:8000",
+        backendUrl: "http://localhost:8000",
+        frontendUrl: "http://localhost:8000",
       },
     };
   } else if (phase === "jest") {
@@ -45,12 +45,12 @@ module.exports = (phase, { defaultConfig }) => {
     },
     env: {
       backendUrl: process.env.LOCAL
-        ? "http://127.0.0.1:8000"
+        ? "http://localhost:8000"
         : process.env.INTEGRATION_TEST
         ? "http://localhost:8001"
         : `http://${process.env.BACKEND_URL}:${process.env.BACKEND_PORT}`,
       frontendUrl: process.env.LOCAL
-        ? "http://127.0.0.1:8000"
+        ? "http://localhost:8000"
         : process.env.INTEGRATION_TEST
         ? "http://localhost:8001"
         : "",
