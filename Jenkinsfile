@@ -31,7 +31,14 @@ pipeline {
                                 }
                             }
                         }
-                
+                        dir('nginx/local') {
+                            script {
+                                withDockerRegistry([ credentialsId: "dockerhub-repo", url: "" ]) {
+                                    def frontendImage = docker.build("hsndocker/local-nginx:${env.BUILD_ID}")
+                                    frontendImage.push()
+                                }
+                            }
+                        } 
                     }
                 }
             }

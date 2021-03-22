@@ -44,7 +44,8 @@ module.exports = (phase, { defaultConfig }) => {
       domains: [`${process.env.BACKEND_URL}`, "127.0.0.1", "localhost"],
     },
     env: {
-      backendUrl: process.env.LOCAL
+      backendUrl: (process.env.LOCAL && process.env.INTEGRATED) ? "http://backendingress:80"
+        : process.env.LOCAL
         ? "http://localhost:8000"
         : process.env.INTEGRATION_TEST
         ? "http://localhost:8001"
