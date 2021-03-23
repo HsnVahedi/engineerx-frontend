@@ -12,7 +12,3 @@ RUN npm install
 
 # Copying source files
 COPY . /usr/src/app
-
-RUN apk --no-cache add curl
-
-# CMD ["sh"]
