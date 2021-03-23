@@ -53,6 +53,8 @@ export const ImageBlock = ({ block }) => {
               alt={image.alt}
               width={image.width}
               height={image.height}
+              // layout="responsive"
+              // objectFit="fill"
             />
           </Box>
           <Box

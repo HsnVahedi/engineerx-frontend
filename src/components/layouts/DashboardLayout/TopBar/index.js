@@ -1,8 +1,6 @@
 import React from "react";
-// import { Link as RouterLink } from 'react-router-dom';
 import Link from "next/link";
 import PropTypes from "prop-types";
-import clsx from "clsx";
 import {
   AppBar,
   Box,
@@ -15,25 +13,20 @@ import {
 import { Menu as MenuIcon } from "react-feather";
 import Logo from "../../../logo";
 import { THEMES } from "../../../../constants";
-// import Account from './Account';
-// import Contacts from './Contacts';
-// import Notifications from './Notifications';
-// import Search from './Search';
-// import Settings from './Settings';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     zIndex: theme.zIndex.drawer + 100,
     ...(theme.name === THEMES.LIGHT
       ? {
-          boxShadow: "none",
-          backgroundColor: theme.palette.primary.main,
-        }
+        boxShadow: "none",
+        backgroundColor: theme.palette.primary.main,
+      }
       : {}),
     ...(theme.name === THEMES.ONE_DARK
       ? {
-          backgroundColor: theme.palette.background.default,
-        }
+        backgroundColor: theme.palette.background.default,
+      }
       : {}),
   },
   toolbar: {
@@ -66,11 +59,7 @@ function TopBar({ onMobileNavOpen }) {
           </Link>
         </Hidden>
         <Box ml={2} flexGrow={1} />
-        {/* <Search /> */}
-        {/* <Contacts /> */}
-        {/* <Notifications /> */}
-        {/* <Settings /> */}
-        <Box ml={2}>{/* <Account /> */}</Box>
+        <Box ml={2}></Box>
       </Toolbar>
     </AppBar>
   );
