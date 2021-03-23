@@ -1,34 +1,11 @@
 version: "3"
 services:
   ingress:
-    image: hsndocker/local-nginx:latest
-    ports:
-      - "3000:80"
-    networks:
-      - engineerx
-    depends_on:
-      - frontend
-  frontend:
-    image: hsndocker/frontend:latest
-    ports:
-      - "3001:3000"
-    entrypoint: ["/bin/sh","-c"]
-    command:
-    - |
-       ./wait-for-it.sh -t 120 backend:8000 -- ./start-local.sh 
-    environment:
-      - LOCAL=1
-      - INTEGRATED=1
-    networks:
-      - engineerx
-    depends_on:
-      - db 
-  backendingress:
     image: hsndocker/backend-local-nginx:latest 
     ports: 
       - "8000:80"
     networks:
-      - engineerx
+      - engineerx-backend
     volumes: 
       - static:/home/app/web/static
       - media:/home/app/web/media
@@ -43,10 +20,10 @@ services:
     - |
        ./wait-for-it.sh db:5432 -- ./start-local.sh 
     environment:
-      - POSTGRES_PASSWORD
+      - POSTGRES_PASSWORD=password
       - FRONTEND_URL=http://127.0.0.1:3000
     networks:
-      - engineerx
+      - engineerx-backend
     volumes: 
       - static:/app/static
       - media:/app/media
@@ -57,11 +34,11 @@ services:
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_PASSWORD
+      - POSTGRES_PASSWORD=password
     networks:
-      - engineerx 
+      - engineerx-backend 
 networks:
-  engineerx:
+  engineerx-backend:
     driver: bridge
 volumes:
     static:

@@ -126,7 +126,7 @@ export const Section = ({ section }) => {
 export const Tags = ({ tags }) => {
   if (tags) {
     return (
-      <Grid item xs={12} md={12} lg={10}>
+      <Grid item xs={12} md={12} lg={10} role="tags-section">
         <Card>
           <CardContent>
             <Box display="flex" flexWrap="wrap">
