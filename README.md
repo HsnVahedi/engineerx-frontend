@@ -98,8 +98,6 @@ This project is built using [Material UI](https://material-ui.com/).
 
 ## Run this project
 
-This project depends on the backend microservices in [this repository](https://github.com/HsnVahedi/engineerx-backend). In order to run this project,
-
 #### 1. Clone this repository:
     git clone https://github.com/HsnVahedi/engineerx-frontend
 #### 2. Pull the required backend docker images:
