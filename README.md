@@ -90,24 +90,29 @@ These two serverless functions (`getStaticProps` and `getStaticPaths`) are used 
 
 Nextjs also provides `getServerSideProps` and `useSWR` hook for other scenarios. To read more about nextjs data-fetching check [this](https://nextjs.org/docs/basic-features/data-fetching) out.
 
-## Run Development Environment
+#### 3. Nextjs image optimization
+For more details check [this](https://nextjs.org/docs/basic-features/image-optimization) out.
+
+#### 4. Material UI
+This project is built using [Material UI](https://material-ui.com/).
+
+## Run this project
+
+This project depends on the backend microservices in [this repository](https://github.com/HsnVahedi/engineerx-backend). In order to run this project,
 
 #### 1. Clone this repository:
-    git clone https://github.com/HsnVahedi/engineerx-backend
-#### 2. Build the docker image:
-    cd engineerx-backend/engineerx
-    docker build . -t engineerx-backend-django:latest
-#### 3. Run the docker container and publish it's port:
-    docker run -it -p 8000:8000 engineerx-backend-django:latest bash
-#### 4. Create development database:
-    python manage.py makemigrations && python manage.py migrate
+    git clone https://github.com/HsnVahedi/engineerx-frontend
+#### 2. Pull the required backend docker images:
+    cd engineerx-frontend
+    docker-compose -f backend-docker-compose.yaml pull
+#### 3. Start the backend production server:
+    docker-compose -f backend-docker-compose.yaml up
+#### 4. Now open another terminal and execute bash in the django container:
+    docker-compose exec backend bash
 #### 5. Initialize the database with randomly generated objects:
-    mkdir media && mv -vn downloads/ media/downloads/
     python manage.py initdb
-#### 6. Create an admin user:
-    python manage.py createsuperuser
-#### 7. Start the development server:
-    python manage.py runserver 0.0.0.0:8000
+#### 6. Now open another terminal and Run frontend microservice:
+If you want to run development environment, simply run `npm run dev`. If you want to run production environment run `export LOCAL=1 && npm run build && npm run start`.
     
 Now you can see the project is running on `127.0.0.1:8000/`. Now go to `127.0.0.1:8000/admin` and login if required.
 
