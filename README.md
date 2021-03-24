@@ -107,7 +107,7 @@ This project depends on the backend microservices in [this repository](https://g
     docker-compose -f backend-docker-compose.yaml pull
 #### 3. Start the backend production server:
     docker-compose -f backend-docker-compose.yaml up
-#### 4. Now open another terminal and execute bash in the django container:
+#### 4. Now open another terminal and execute bash in the backend container:
     docker-compose -f backend-docker-compose.yaml exec backend bash
 #### 5. Initialize the database with randomly generated objects:
     python manage.py initdb
