@@ -13,7 +13,7 @@
 ## Table of contents
 
 - [Introduction to EngineerX project](#introduction-to-engineerx-project)
-- [What's included](#whats-included)
+- [Frontend Microservice](#frontend-microservice)
 - [Run this project](#run-this-project)
 - [EngineerX code repositories](#engineerx-code-repositories)
 
@@ -41,7 +41,7 @@ Key features of the project:
 
 
 
-## What's included
+## Frontend Microservice
 This repository contains the project's frontend microservice. It's a modern react application created by nextjs framework. It has these nice features:
 
 #### 1. SEO friendly
