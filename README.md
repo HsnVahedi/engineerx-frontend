@@ -109,7 +109,9 @@ This project is built using [Material UI](https://material-ui.com/).
     docker-compose -f backend-docker-compose.yaml exec backend bash
 #### 5. Initialize the database with randomly generated objects:
     python manage.py initdb
-#### 6. Now open another terminal and Run frontend microservice:
+#### 6. Now open another terminal and Install npm packages:
+    npm install
+#### 7. Run frontend microservice:
 If you want to run development environment, simply run `npm run dev`. If you want to run production environment run `export LOCAL=1 && npm run build && npm run start`.
     
 Now you can see the project is running on `127.0.0.1:3000/`.
