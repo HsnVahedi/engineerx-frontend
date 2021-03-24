@@ -108,13 +108,13 @@ This project depends on the backend microservices in [this repository](https://g
 #### 3. Start the backend production server:
     docker-compose -f backend-docker-compose.yaml up
 #### 4. Now open another terminal and execute bash in the django container:
-    docker-compose exec backend bash
+    docker-compose -f backend-docker-compose.yaml exec backend bash
 #### 5. Initialize the database with randomly generated objects:
     python manage.py initdb
 #### 6. Now open another terminal and Run frontend microservice:
 If you want to run development environment, simply run `npm run dev`. If you want to run production environment run `export LOCAL=1 && npm run build && npm run start`.
     
-Now you can see the project is running on `127.0.0.1:8000/`. Now go to `127.0.0.1:8000/admin` and login if required.
+Now you can see the project is running on `127.0.0.1:3000/`.
 
 
 
