@@ -50,7 +50,7 @@ Unlike `create-react-app`, nextjs renders html files at server side. So search e
 #### Supporting multiple Data-fetching methods
 Nextjs provides powerful tools for data-fetching. Frontend developers can combine different ways of data-fetching to construct the most optimized application.
 
-For example, here is out Post page:
+For example, here is our Post page:
 
 
     const Page = ({ post }) => {
@@ -85,6 +85,10 @@ For example, here is out Post page:
         fallback: "blocking",
       };
     };
+    
+These two serverless functions (`getStaticProps` and `getStaticPaths`) are used to generate all posts at build stage (`npm run build`). This means when a user's bowser requests a page, it's already there! But unlike static site generators, the created html files can get updated after that. 
+
+Nextjs also provides `getServerSideProps` and `useSWR` hook for other scenarios. To read more about nextjs data-fetching check [this](https://nextjs.org/docs/basic-features/data-fetching) out.
 
 ## Run Development Environment
 
