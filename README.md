@@ -44,10 +44,10 @@ Key features of the project:
 ## What's included
 This repository contains the project's frontend microservice. It's a modern react application created by nextjs framework. It has these nice features:
 
-#### SEO friendly
+#### 1. SEO friendly
 Unlike `create-react-app`, nextjs renders html files at server side. So search engine crawlers can easily read the website.
 
-#### Supporting multiple Data-fetching methods
+#### 2. Supporting multiple Data-fetching methods
 Nextjs provides powerful tools for data-fetching. Frontend developers can combine different ways of data-fetching to construct the most optimized application.
 
 For example, here is our Post page:
