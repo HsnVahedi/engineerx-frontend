@@ -1,34 +1,151 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<p align="center">
 
-## Getting Started
+  <h3 align="center">EngineerX Frontend Microservices</h3>
 
-First, run the development server:
+  <p align="center">
+    <a href="https://github.com/HsnVahedi/engineerx-frontend/issues/new">Report bug</a>
+    ·
+    <a href="https://github.com/HsnVahedi/engineerx-frontend/issues/new">Request feature</a>
+  </p>
+</p>
 
-```bash
-npm run dev
-# or
-yarn dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Table of contents
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+- [Introduction to EngineerX project](#introduction-to-engineerx-project)
+- [What's included](#whats-included)
+- [Run this project](#run-this-project)
+- [EngineerX code repositories](#engineerx-code-repositories)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Introduction to EngineerX project
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+EngineerX is an open source web application designed for engineers and specialists. It lets them share their ideas, create tutorials, represent themselves, employ other specialists and ...
 
-## Deploy on Vercel
+Currently, The project is at it's first steps and includes a simple but awesome [Content Management System (CMS)](https://en.wikipedia.org/wiki/Content_management_system) that lets content providers to create and manage blog posts.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Key features of the project:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- It's [cloud native](https://en.wikipedia.org/wiki/Cloud_native_computing) and can easily get deployed on popular cloud providers like (AWS, Azure and ...)
+- It benefits from microservices architectural best practices. It uses technologies like [docker](https://www.docker.com/) and [kubernetes](https://kubernetes.io/) to provide a horizontally scalable infrastructure with high availability.
+- It includes a wide range of popular development frameworks and libraries like: [django](https://www.djangoproject.com/), [reactjs](https://reactjs.org/), [nextjs](https://nextjs.org/), [wagtail](https://wagtail.io/) and ...
+- It benefits from [TDD](https://en.wikipedia.org/wiki/Test-driven_development) best practices and uses [unittest](https://docs.python.org/3/library/unittest.html#module-unittest), [jest](https://jestjs.io/), [react-testing-library](https://testing-library.com/docs/react-testing-library/intro/) and [cypress](https://www.cypress.io/) for different kinds of tests.
+- It uses [Jenkins](https://www.jenkins.io/) declarative pipeline syntax to implement [CI/CD](https://en.wikipedia.org/wiki/CI/CD) pipelines. (Pipeline as code)
+- Developers are able to write different kinds of tests and run them in a parallelized and non-blocking manner. In other words, testing environment is also elastic and scalable.
+- It uses [Terraform](https://www.terraform.io/) to provision the required cloud infrastructure so it's really easy to deploy the whole project and destroy it whenever it's not needed any more. (Infrastructure as code)
+- It's built on top of wagtail. Wagtail enables django developers to have a professional headless CMS which can be customized for many types of businesses.
+
+
+
+
+## What's included
+This repository contains the project's frontend microservice. It's a modern react application created by nextjs framework. It has these nice features:
+
+#### SEO friendly
+Unlike `create-react-app`, nextjs renders html files at server side. So search engine crawlers can easily read the website.
+
+#### Supporting multiple Data-fetching methods
+Nextjs provides powerful tools for data-fetching. Frontend developers can combine different ways of data-fetching to construct the most optimized application.
+
+For example, here is out Post page:
+
+
+    const Page = ({ post }) => {
+      const postJson = JSON.parse(post);
+      return (
+        <Layout>
+          <Post post={postJson} />
+        </Layout>
+      );
+    };
+
+    export const getStaticProps = async ({ params, preview, previewData }) => {
+      const post = await getPostBySlug(params.slug);
+        if (post) {
+          return {
+            props: {
+              post: JSON.stringify(post),
+            },
+            revalidate: 5,
+          };
+        } else {
+            return {
+              notFound: true,
+            };
+        }
+    };
+
+    export const getStaticPaths = async () => {
+      const slugs = await getPostSlugs();
+      return {
+        paths: slugs.map((slug) => `/posts/${encodeURIComponent(slug)}`),
+        fallback: "blocking",
+      };
+    };
+
+## Run Development Environment
+
+#### 1. Clone this repository:
+    git clone https://github.com/HsnVahedi/engineerx-backend
+#### 2. Build the docker image:
+    cd engineerx-backend/engineerx
+    docker build . -t engineerx-backend-django:latest
+#### 3. Run the docker container and publish it's port:
+    docker run -it -p 8000:8000 engineerx-backend-django:latest bash
+#### 4. Create development database:
+    python manage.py makemigrations && python manage.py migrate
+#### 5. Initialize the database with randomly generated objects:
+    mkdir media && mv -vn downloads/ media/downloads/
+    python manage.py initdb
+#### 6. Create an admin user:
+    python manage.py createsuperuser
+#### 7. Start the development server:
+    python manage.py runserver 0.0.0.0:8000
+    
+Now you can see the project is running on `127.0.0.1:8000/`. Now go to `127.0.0.1:8000/admin` and login if required.
+
+
+
+
+
+## Run Production Environment
+
+#### 1. Clone this repository:
+    git clone https://github.com/HsnVahedi/engineerx-backend
+#### 2. Pull the required docker images:
+    cd engineerx-backend
+    docker-compose pull
+#### 3. Start the production server:
+    docker-compose up
+#### 4. Now open another terminal and execute bash in the django container:
+    docker-compose exec backend bash
+#### 5. Initialize the database with randomly generated objects:
+    python manage.py initdb
+#### 6. Create an admin user:
+    python manage.py createsuperuser
+
+Now you can see the project is running on `127.0.0.1:8000/`. Now go to `127.0.0.1:8000/admin` and login if required.
+
+
+
+
+## EngineerX code repositories
+
+EngineerX is a big project and consists of several code bases:
+
+- [engineerx-aws-cli](https://github.com/HsnVahedi/engineerx-aws-cli)
+- [engineerx-aws-infrastructure](https://github.com/HsnVahedi/engineerx-aws-infrastructure)
+- [engineerx-aws-deployment](https://github.com/HsnVahedi/engineerx-aws-deployment)
+- [engineerx-backend](https://github.com/HsnVahedi/engineerx-backend)
+- [engineerx-frontend](https://github.com/HsnVahedi/engineerx-frontend)
+- [engineerx-integration](https://github.com/HsnVahedi/engineerx-integration)
+- [engineerx-backend-unittest](https://github.com/HsnVahedi/engineerx-backend-unittest)
+- [engineerx-frontend-unittest](https://github.com/HsnVahedi/engineerx-frontend-unittest)
+- [engineerx-integration-test](https://github.com/HsnVahedi/engineerx-integration-test)
+- [engineerx-efs-pv](https://github.com/HsnVahedi/engineerx-efs-pv)
+- [engineerx-efs-pvc](https://github.com/HsnVahedi/engineerx-efs-pvc)
+- [engineerx-backend-latest-tag](https://github.com/HsnVahedi/engineerx-backend-latest-tag)
+- [engineerx-frontend-latest-tag](https://github.com/HsnVahedi/engineerx-frontend-latest-tag)
