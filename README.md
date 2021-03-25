@@ -86,7 +86,9 @@ For example, here is our Post page:
       };
     };
     
-These two serverless functions (`getStaticProps` and `getStaticPaths`) are used to generate all posts at build stage (`npm run build`). This means when a user's bowser requests a page, it's already there! But unlike static site generators, the created html files can get updated after that. 
+These two serverless functions (`getStaticProps` and `getStaticPaths`) are used to generate all posts at build stage (`npm run build`).
+This means that when a user's bowser requests a page, it's already there!
+But unlike static site generators, the created html files can get updated after that. 
 
 Nextjs also provides `getServerSideProps` and `useSWR` hook for other scenarios. To read more about nextjs data-fetching check [this](https://nextjs.org/docs/basic-features/data-fetching) out.
 
