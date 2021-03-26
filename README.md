@@ -111,7 +111,7 @@ This project is built using [Material UI](https://material-ui.com/).
 Now open another terminal and execute this `python manage.py initdb` in backend container:
 
     docker-compose -f backend-docker-compose.yaml exec backend python manage.py initdb
-#### 5. Create a super uer:
+#### 5. Create a super user:
 
     docker-compose -f backend-docker-compose.yaml exec backend python manage.py createsuperuser
 #### 6. Now open another terminal and Install npm packages:
