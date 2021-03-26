@@ -16,6 +16,7 @@ const Page = ({ post }) => {
   const postJson = JSON.parse(post);
   return (
     <Layout>
+      <h1>TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTkdkdkdkdkdkdkdk</h1>
       <Post post={postJson} />
     </Layout>
   );
