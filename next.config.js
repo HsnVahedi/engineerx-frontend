@@ -41,15 +41,16 @@ module.exports = (phase, { defaultConfig }) => {
     ...config,
     images: {
       ...config.images,
-      domains: [`${process.env.BACKEND_URL}`, "127.0.0.1", "localhost"],
+      domains: [`${process.env.BACKEND_URL}`, "127.0.0.1", "localhost", "backendingress"],
     },
     env: {
-      backendUrl: process.env.LOCAL
+      backendUrl: process.env.INTEGRATED ? "http://backendingress:80" 
+        : process.env.LOCAL
         ? "http://localhost:8000"
         : process.env.INTEGRATION_TEST
         ? "http://localhost:8001"
         : `http://${process.env.BACKEND_URL}:${process.env.BACKEND_PORT}`,
-      frontendUrl: process.env.LOCAL
+      frontendUrl: process.env.LOCAL || process.env.INTEGRATED
         ? "http://localhost:8000"
         : process.env.INTEGRATION_TEST
         ? "http://localhost:8001"
