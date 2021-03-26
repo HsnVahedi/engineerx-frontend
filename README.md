@@ -111,12 +111,15 @@ This project is built using [Material UI](https://material-ui.com/).
 Now open another terminal and execute this `python manage.py initdb` in backend container:
 
     docker-compose -f backend-docker-compose.yaml exec backend python manage.py initdb
-#### 5. Now open another terminal and Install npm packages:
+#### 5. Create a super uer:
+
+    docker-compose -f backend-docker-compose.yaml exec backend python manage.py createsuperuser
+#### 6. Now open another terminal and Install npm packages:
     npm install
-#### 6. Run frontend microservice:
+#### 7. Run frontend microservice:
 If you want to run development environment, simply run `npm run dev`. If you want to run production environment run `export LOCAL=1 && npm run build && npm run start`.
     
-Now you can see the project is running on `127.0.0.1:3000/`.
+Now you can see the project is running on `127.0.0.1:3000/`. Wagital's administration pages are also accessible on `127.0.0.1:8000/admin`.
 
 
 
