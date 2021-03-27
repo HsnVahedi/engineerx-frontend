@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
-import { ParagraphBlock } from "../../../src/components/posts/PostContent";
+import { ParagraphBlock } from "../../../src/components/posts/blocks/ParagraphBlock";
 
 describe("<ParagraphBlock />", () => {
   it("renders without crashing", () => {

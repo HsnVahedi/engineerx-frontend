@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
-import { ImageBlock } from "../../../src/components/posts/PostContent";
+import { ImageBlock } from "../../../src/components/posts/blocks/ImageBlock";
 import faker from "faker";
 
 let image;
