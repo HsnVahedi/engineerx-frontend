@@ -2,83 +2,16 @@ import {
   Box,
   Container,
   Divider,
-  makeStyles,
   Grid,
   Card,
   CardHeader,
   CardContent,
 } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
-import ReactHtmlParser from "react-html-parser";
-import Image from "next/image";
 import { Fragment } from "react";
 import Tag from "./Tag";
-import { getBackendUrl } from "../../modules/urls";
-
-export const ParagraphBlock = ({ block }) => {
-  if (block) {
-    return <div>{ReactHtmlParser(block.paragraph)}</div>;
-  } else {
-    return null;
-  }
-};
-
-const useImageBlockStyles = makeStyles((theme) => ({
-  paragraphBox: {
-    width: "40%",
-  },
-  paragraph: {
-    textAlign: "center",
-  },
-}));
-
-export const ImageBlock = ({ block }) => {
-  const backendUrl = getBackendUrl();
-  const classes = useImageBlockStyles();
-
-  if (block) {
-    const image = block.image;
-    if (image) {
-      return (
-        <Box display="flex" justifyContent="center" flexWrap="wrap">
-          <Box
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            flexGrow={1}
-            p={1}
-          >
-            <Image
-              src={`${backendUrl}${image.url}`}
-              alt={image.alt}
-              width={image.width}
-              height={image.height}
-              // layout="responsive"
-              // objectFit="fill"
-            />
-          </Box>
-          <Box
-            className={classes.paragraphBox}
-            display="flex"
-            flexGrow={1}
-            flexDirection="column"
-            justifyContent="center"
-            p={1}
-          >
-            <Box className={classes.paragraph}>
-              {ReactHtmlParser(block.paragraph)}
-            </Box>
-          </Box>
-        </Box>
-      );
-    } else {
-      return null;
-    }
-
-  } else {
-    return null;
-  }
-};
+import { ImageBlock } from "./blocks/ImageBlock";
+import { ParagraphBlock } from "./blocks/ParagraphBlock";
 
 export const SectionBlock = ({ block }) => {
   if (block) {
