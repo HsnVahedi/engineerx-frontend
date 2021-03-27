@@ -16,6 +16,16 @@ export const Image = class {
   }
 };
 
+export const CodeBlock = class {
+  constructor(
+    language, content
+  ) {
+    this.language = language;
+    this.content = content;
+    this.blockType = "code";
+  }
+};
+
 export const ParagraphBlock = class {
   constructor(paragraph) {
     this.paragraph = paragraph;

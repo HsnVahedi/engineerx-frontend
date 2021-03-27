@@ -12,6 +12,7 @@ import { Fragment } from "react";
 import Tag from "./Tag";
 import { ImageBlock } from "./blocks/ImageBlock";
 import { ParagraphBlock } from "./blocks/ParagraphBlock";
+import { CodeBlock } from "./blocks/CodeBlock"
 
 export const SectionBlock = ({ block }) => {
   if (block) {
@@ -19,6 +20,8 @@ export const SectionBlock = ({ block }) => {
       return <ParagraphBlock block={block}></ParagraphBlock>;
     } else if (block.blockType === "image") {
       return <ImageBlock block={block}></ImageBlock>;
+    } else if (block.blockType === "code") {
+      return <CodeBlock block={block}></CodeBlock>;
     }
   } else {
     return null;

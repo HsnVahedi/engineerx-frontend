@@ -6,6 +6,7 @@ import {
   Section,
   Post,
   Owner,
+  CodeBlock,
 } from "./models";
 import { getBackendUrl } from "../urls";
 
@@ -29,6 +30,12 @@ const getImage = async (id) => {
   );
 };
 
+const getCodeBlock = async (block) => {
+  const language = block.value.language;
+  const content = block.value.content;
+  return new CodeBlock(language, content)
+}
+
 const getImageBlock = async (block) => {
   const id = block.value.image;
   const paragraph = block.value.caption;
@@ -45,6 +52,8 @@ const getBlock = async (row) => {
     return await getPragraphBlock(row);
   } else if (row.type === "image") {
     return await getImageBlock(row);
+  } else if (row.type === "code") {
+    return await getCodeBlock(row)
   }
 };
 
