@@ -14,7 +14,7 @@ const backendUrl = getBackendUrl();
 const apiUrl = `${backendUrl}/api`;
 const pagesUrl = `${apiUrl}/pages`;
 const imagesUrl = `${apiUrl}/images`;
-const pagesListUrl = `${pagesUrl}?type=home.PostPage&order=first_published_at`;
+const pagesListUrl = `${pagesUrl}?type=posts.PostPage&order=first_published_at`;
 
 const getImage = async (id) => {
   const imageUrl = `${imagesUrl}/${id}`;
