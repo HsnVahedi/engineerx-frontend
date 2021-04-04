@@ -2,9 +2,7 @@ import { getPaginatedObjects, getPageObjects } from "../pagination";
 import {
   Image,
   SocialAccount,
-  PersonalPageLink,
   PersonalPageSkill,
-  PersonalPageField,
   Education,
   Experience,
   PersonalInformation,
@@ -17,7 +15,7 @@ const backendUrl = getBackendUrl();
 const apiUrl = `${backendUrl}/api`;
 const pagesUrl = `${apiUrl}/pages`;
 const imagesUrl = `${apiUrl}/images`;
-const pagesListUrl = `${pagesUrl}?type=accounts.PersonalPage&order=first_published_at`;
+const pagesListUrl = `${pagesUrl}?type=accounts.PersonalPage&order=first_published_at&fields=owner`;
 
 const getImage = async (id) => {
   const imageUrl = `${imagesUrl}/${id}`;
@@ -39,22 +37,10 @@ const getSocialAccount = async (record) => {
   return new SocialAccount(socialNetwork, url);
 }
 
-const getPersonalPageLink = async (record) => {
-  const name = record.name;
-  const url = record.url;
-  return new PersonalPageLink(name, url)
-}
-
 const getPersonalPageSkill = async (record) => {
   const name = record.name;
   const description = record.description;
   return new PersonalPageSkill(name, description);
-}
-
-const getPersonalPageField = async (record) => {
-  const name = record.name;
-  const value = record.value;
-  return new PersonalPageField(name, value);
 }
 
 const getEducation = async (record) => {
@@ -62,7 +48,7 @@ const getEducation = async (record) => {
   const institution = record.institution;
   const begin = moment(record.begin);
   const end = moment(record.end);
-  const location = moment(record.location);
+  const location = record.location;
   return new Education(degree, institution, begin, end, location);
 }
 
@@ -72,8 +58,7 @@ const getExperience = async (record) => {
   const role = record.role;
   const begin = moment(record.begin);
   const end = moment(record.end);
-  const link = record.link;
-  return new Experience(company, location, role, begin, end, link);
+  return new Experience(company, location, role, begin, end);
 }
 
 const getItems = async (items, getItem) => {
@@ -88,16 +73,8 @@ const getSocialAccounts = async (accountItems) => {
   return getItems(accountItems, getSocialAccount);
 };
 
-const getPersonalPageLinks = async (linkItems) => {
-  return getItems(linkItems, getPersonalPageLink);
-};
-
 const getPersonalPageSkills = async (skillItems) => {
   return getItems(skillItems, getPersonalPageSkill);
-}
-
-const getPersonalPageFields = async (fieldItems) => {
-  return getItems(fieldItems, getPersonalPageField);
 }
 
 const getEducations = async (educationItems) => {
@@ -138,16 +115,15 @@ export const getPersonalPage = async (id) => {
   }
 
   let socialAccounts = await getSocialAccounts(data.related_accounts);
-  let links = await getPersonalPageLinks(data.related_links);
   let skills = await getPersonalPageSkills(data.related_skills);
-  let fields = await getPersonalPageFields(data.related_fields);
   let educations = await getEducations(data.related_educations);
   let experiences = await getExperiences(data.related_experiences);
   const owner_info = data.owner_info;
   let owner = new Owner(
     owner_info.firstname,
     owner_info.lastname,
-    owner_info.image
+    owner_info.image,
+    owner_info.id,
   );
   const firstPublishedAt = data.meta.first_published_at;
   return new PersonalInformation(
@@ -158,8 +134,8 @@ export const getPersonalPage = async (id) => {
     image16x9,
     owner,
     experiences,
-    educations, fields,
-    skills, links, socialAccounts, firstPublishedAt
+    educations,
+    skills, socialAccounts, firstPublishedAt
   );
 };
 
@@ -210,17 +186,17 @@ export const getPagePersonalPages = async (page) => {
 
 export const getPersonalPagesSlugs = async () => {
   const items = await getPaginatedObjects(pagesListUrl);
-  const slugs = items.map((item) => item.meta.slug);
+  const slugs = items.map((item) => `${item.owner.id}`);
   return slugs;
 };
 
-export const getPersonalImagesTotalCount = async () => {
+export const getPersonalPagesTotalCount = async () => {
   const res = await fetch(pagesListUrl, { method: "GET" });
   const data = await res.json();
   return data.meta.total_count;
 };
 
 export const getPersonalPagesPaginationSize = async () => {
-  const totalCount = await getPostsTotalCount();
+  const totalCount = await getPersonalPagesTotalCount();
   return Math.ceil(totalCount / 20);
 };

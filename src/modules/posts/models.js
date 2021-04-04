@@ -49,10 +49,11 @@ export const Section = class {
 };
 
 export const Owner = class {
-  constructor(firstname, lastname, url) {
+  constructor(firstname, lastname, url, id) {
     this.firstname = firstname;
     this.lastname = lastname;
     this.url = url;
+    this.id = id;
   }
 };
 

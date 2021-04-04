@@ -10,7 +10,9 @@ import OwnerAvatar from "../Avatar";
 import { getBackendUrl, getFrontendUrl } from "../../modules/urls";
 
 const useStyles = makeStyles((theme) => ({
-  root: {},
+  root: {
+    marginBottom: "9%"
+  },
   cover: {
     position: "relative",
     height: 460,
@@ -64,12 +66,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PostHeader = ({ post }) => {
+const PersonalInfoHeader = ({ personalInfo }) => {
   const backendUrl = getBackendUrl();
   const frontendUrl = getFrontendUrl();
   const classes = useStyles();
-  const image = post.image16x9;
-  const owner = post.owner;
+  const image = personalInfo.image16x9;
+  const owner = personalInfo.owner;
 
   const wallpaper = image ? (
     <div
@@ -86,10 +88,16 @@ const PostHeader = ({ post }) => {
       <Container maxWidth="lg">
         <Box position="relative" mt={1} display="flex" alignItems="center">
           <OwnerAvatar
-            user={post.owner}
+            user={personalInfo.owner}
             className={classes.avatar}
           ></OwnerAvatar>
           <Box marginLeft="160px">
+            <Typography
+              variant="overline"
+              color="textSecondary"
+            >
+              {personalInfo.title}
+            </Typography>
             <Typography variant="h4" color="textPrimary">
               {`${owner.firstname} ${owner.lastname}`}
             </Typography>
@@ -101,4 +109,4 @@ const PostHeader = ({ post }) => {
   );
 };
 
-export default PostHeader;
+export default PersonalInfoHeader;

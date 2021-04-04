@@ -26,27 +26,11 @@ export const SocialAccount = class {
   }
 };
 
-export const PersonalPageLink = class {
-  constructor(name, url) {
-    this.name = name;
-    this.url = url;
-    this.blockType = "personal-page-link";
-  }
-};
-
 export const PersonalPageSkill = class {
   constructor(name, description) {
     this.name = name;
     this.description = description;
     this.blockType = "personal-page-skill";
-  }
-};
-
-export const PersonalPageField = class {
-  constructor(name, value) {
-    this.name = name;
-    this.value = value;
-    this.blockType = "personal-page-field";
   }
 };
 
@@ -62,22 +46,22 @@ export const Education = class {
 };
 
 export const Experience = class {
-  constructor(company, location, role, begin, end, link) {
+  constructor(company, location, role, begin, end) {
     this.company = company;
     this.location = location;
     this.role = role;
     this.begin = begin;
     this.end = end;
-    this.link = link;
     this.blockType = "personal-page-experience";
   }
 };
 
 export const Owner = class {
-  constructor(firstname, lastname, url) {
+  constructor(firstname, lastname, url, id) {
     this.firstname = firstname;
     this.lastname = lastname;
     this.url = url;
+    this.id = id;
   }
 };
 
@@ -91,9 +75,7 @@ export const PersonalInformation = class {
     owner,
     experiences,
     educations,
-    fields,
     skills,
-    links,
     socialAccounts,
     firstPublishedAt,
   ) {
@@ -104,9 +86,7 @@ export const PersonalInformation = class {
     this.image16x9 = image16x9;
     this.experiences = experiences;
     this.educations = educations;
-    this.fields = fields;
     this.skills = skills;
-    this.links = links;
     this.socialAccounts = socialAccounts;
     this.owner = owner;
     this.firstPublishedAt = firstPublishedAt;

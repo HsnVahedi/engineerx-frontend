@@ -4,7 +4,7 @@ import {
 } from "@material-ui/core";
 
 const useParagraphBlockStyles = makeStyles((theme) => ({
-    paragraphBlock: {
+    richText: {
         "& ol": {
             padding: '4%',
             marginLeft: '3%',
@@ -22,12 +22,13 @@ const useParagraphBlockStyles = makeStyles((theme) => ({
     }
 }));
 
-export const ParagraphBlock = ({ block }) => {
+const RichText = ({ paragraph }) => {
     const classes = useParagraphBlockStyles()
-    if (block) {
-        return <div className={classes.paragraphBlock}>{ReactHtmlParser(block.paragraph)}</div>;
+    if (paragraph) {
+        return <div className={classes.richText}>{ReactHtmlParser(paragraph)}</div>;
     } else {
         return null;
     }
 };
 
+export default RichText;

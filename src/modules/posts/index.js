@@ -14,7 +14,7 @@ const backendUrl = getBackendUrl();
 const apiUrl = `${backendUrl}/api`;
 const pagesUrl = `${apiUrl}/pages`;
 const imagesUrl = `${apiUrl}/images`;
-const pagesListUrl = `${pagesUrl}?type=posts.PostPage&order=first_published_at`;
+const pagesListUrl = `${pagesUrl}?type=posts.PostPage&order=first_published_at&fields=owner`;
 
 const getImage = async (id) => {
   const imageUrl = `${imagesUrl}/${id}`;
@@ -111,7 +111,8 @@ export const getPost = async (id) => {
   let owner = new Owner(
     owner_info.firstname,
     owner_info.lastname,
-    owner_info.image
+    owner_info.image,
+    owner_info.id,
   );
   const firstPublishedAt = data.meta.first_published_at;
   return new Post(
@@ -158,8 +159,8 @@ const convertItemsToPosts = async (items) => {
   return posts;
 };
 
-export const getPosts = async () => {
-  const items = await getPaginatedObjects(pagesListUrl);
+export const getUserPosts = async (userId) => {
+  const items = await getPaginatedObjects(`${pagesListUrl}&owner=${userId}`);
   return await convertItemsToPosts(items);
 };
 

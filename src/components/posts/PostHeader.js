@@ -8,6 +8,7 @@ import {
 } from "@material-ui/core";
 import OwnerAvatar from "../Avatar";
 import { getBackendUrl, getFrontendUrl } from "../../modules/urls";
+import Link from "next/link";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -91,7 +92,11 @@ const PostHeader = ({ post }) => {
           ></OwnerAvatar>
           <Box marginLeft="160px">
             <Typography variant="h4" color="textPrimary">
-              {`${owner.firstname} ${owner.lastname}`}
+              <Link href={`/specialists/${owner.id}`}>
+                <a>
+                  {`${owner.firstname} ${owner.lastname}`}
+                </a>
+              </Link>
             </Typography>
           </Box>
           <Box flexGrow={1} />

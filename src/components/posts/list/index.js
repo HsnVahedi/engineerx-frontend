@@ -63,27 +63,6 @@ export const Posts = ({ posts, size, page, totalCount, tagname }) => {
                 </span>
               )}
             </Typography>
-
-            {/* <Box display="flex" alignItems="center">
-              <Button
-                className={classes.sortButton}
-                onClick={handleSortOpen}
-                ref={sortRef}
-              >
-                {selectedSort}
-                <ArrowDropDownIcon />
-              </Button>
-              <ToggleButtonGroup
-                exclusive
-                onChange={handleModeChange}
-                size="small"
-                value={mode}
-              >
-                <ToggleButton value="grid">
-                  <ViewModuleIcon />
-                </ToggleButton>
-              </ToggleButtonGroup>
-            </Box> */}
           </Box>
           <Grid container spacing={3}>
             {posts.map((post, index) => (
