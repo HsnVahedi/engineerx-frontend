@@ -113,6 +113,7 @@ export const getPost = async (id) => {
     owner_info.lastname,
     owner_info.image,
     owner_info.id,
+    owner_info.has_personal_page,
   );
   const firstPublishedAt = data.meta.first_published_at;
   return new Post(

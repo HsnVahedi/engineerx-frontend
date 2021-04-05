@@ -65,6 +65,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const OwnerName = ({ owner }) => {
+  const name = `${owner.firstname} ${owner.lastname}`;
+  if (owner.hasPersonalPage) {
+    return (
+      <Link href={`/specialists/${owner.id}`}>
+        <a>
+          {name}
+        </a>
+      </Link>
+    )
+  } else {
+    return (<>{name}</>)
+  }
+
+}
+
 const PostHeader = ({ post }) => {
   const backendUrl = getBackendUrl();
   const frontendUrl = getFrontendUrl();
@@ -92,11 +108,7 @@ const PostHeader = ({ post }) => {
           ></OwnerAvatar>
           <Box marginLeft="160px">
             <Typography variant="h4" color="textPrimary">
-              <Link href={`/specialists/${owner.id}`}>
-                <a>
-                  {`${owner.firstname} ${owner.lastname}`}
-                </a>
-              </Link>
+              <OwnerName owner={post.owner} />
             </Typography>
           </Box>
           <Box flexGrow={1} />
