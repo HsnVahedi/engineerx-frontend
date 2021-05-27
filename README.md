@@ -3,7 +3,7 @@
   <h3 align="center">Repository for <a href="https://medium.com/engineerx">EngineerX</a> tutorials</h3>
 
   <p align="center">
-    <a href="https://github.com/HsnVahedi/engineerx-frontend/issues/new">Report bug</a>
+    <a href="https://github.com/HsnVahedi/engineerx/issues/new">Report bug</a>
   </p>
 </p>
 
