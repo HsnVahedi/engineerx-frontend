@@ -1,11 +1,24 @@
 <p align="center">
 
-  <h3 align="center">Repository for <a href="https://medium.com/engineerx">EngineerX</a> tutorials</h3>
+  <h3 align="center"><a href="http://a8c390f2223364021a14ec3fb45263a7-1113280492.us-east-2.elb.amazonaws.com">EngineerX</a> Frontend Microservices</h3>
 
   <p align="center">
-    <a href="https://github.com/HsnVahedi/engineerx/issues/new">Report bug</a>
+    <a href="https://github.com/HsnVahedi/engineerx-frontend/issues/new">Report bug</a>
+    ·
+    <a href="https://github.com/HsnVahedi/engineerx-frontend/issues/new">Request feature</a>
   </p>
 </p>
+
+
+## Table of contents
+
+- [Introduction to EngineerX project](#introduction-to-engineerx-project)
+- [Frontend Microservice](#frontend-microservice)
+- [Run this project](#run-this-project)
+- [EngineerX code repositories](#engineerx-code-repositories)
+
+
+
 
 
 ## Introduction to [EngineerX](http://a8c390f2223364021a14ec3fb45263a7-1113280492.us-east-2.elb.amazonaws.com) project
@@ -28,8 +41,86 @@ Key features of the project:
 
 
 
-## Tutorials
-This repository contains code bases for [EngineerX tutorials](https://medium.com/engineerx).
+## Frontend Microservice
+This repository contains the project's frontend microservice. It's a modern react application created by nextjs framework. It has these nice features:
+
+#### 1. SEO friendly
+Unlike `create-react-app`, nextjs renders html files at server side. So search engine crawlers can easily read the website.
+
+#### 2. Supporting multiple Data-fetching methods
+Nextjs provides powerful tools for data-fetching. Frontend developers can combine different ways of data-fetching to construct the most optimized application.
+
+For example, here is our Post page:
+
+
+    const Page = ({ post }) => {
+      const postJson = JSON.parse(post);
+      return (
+        <Layout>
+          <Post post={postJson} />
+        </Layout>
+      );
+    };
+
+    export const getStaticProps = async ({ params, preview, previewData }) => {
+      const post = await getPostBySlug(params.slug);
+        if (post) {
+          return {
+            props: {
+              post: JSON.stringify(post),
+            },
+            revalidate: 5,
+          };
+        } else {
+            return {
+              notFound: true,
+            };
+        }
+    };
+
+    export const getStaticPaths = async () => {
+      const slugs = await getPostSlugs();
+      return {
+        paths: slugs.map((slug) => `/posts/${encodeURIComponent(slug)}`),
+        fallback: "blocking",
+      };
+    };
+    
+These two serverless functions (`getStaticProps` and `getStaticPaths`) are used to generate all posts at build stage (`npm run build`).
+This means that when a user's bowser requests a page, it's already there!
+But unlike static site generators, the created html files can get updated after that. 
+
+Nextjs also provides `getServerSideProps` and `useSWR` hook for other scenarios. To read more about nextjs data-fetching check [this](https://nextjs.org/docs/basic-features/data-fetching) out.
+
+#### 3. Nextjs image optimization
+For more details check [this](https://nextjs.org/docs/basic-features/image-optimization) out.
+
+#### 4. Material UI
+This project is built using [Material UI](https://material-ui.com/).
+
+## Run this project
+
+#### 1. Clone this repository:
+    git clone https://github.com/HsnVahedi/engineerx-frontend
+#### 2. Pull the required backend docker images:
+    cd engineerx-frontend
+    docker-compose -f backend-docker-compose.yaml pull
+#### 3. Start the backend production server:
+    docker-compose -f backend-docker-compose.yaml up
+#### 4. Initialize the database with randomly generated objects:
+Now open another terminal and execute this `python manage.py initdb` in backend container:
+
+    docker-compose -f backend-docker-compose.yaml exec backend python manage.py initdb
+#### 5. Create a super user:
+
+    docker-compose -f backend-docker-compose.yaml exec backend python manage.py createsuperuser
+#### 6. Now open another terminal and Install npm packages:
+    npm install
+#### 7. Run frontend microservice:
+If you want to run development environment, simply run `npm run dev`. If you want to run production environment run `export LOCAL=1 && npm run build && npm run start`.
+    
+Now you can see the project is running on `127.0.0.1:3000/`. Wagital's administration pages are also accessible on `127.0.0.1:8000/admin`.
+
 
 
 ## [EngineerX](http://a8c390f2223364021a14ec3fb45263a7-1113280492.us-east-2.elb.amazonaws.com) code repositories
