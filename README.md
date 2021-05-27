@@ -8,17 +8,6 @@
 </p>
 
 
-## Table of contents
-
-- [Introduction to EngineerX project](#introduction-to-engineerx-project)
-- [Frontend Microservice](#frontend-microservice)
-- [Run this project](#run-this-project)
-- [EngineerX code repositories](#engineerx-code-repositories)
-
-
-
-
-
 ## Introduction to [EngineerX](http://a8c390f2223364021a14ec3fb45263a7-1113280492.us-east-2.elb.amazonaws.com) project
 
 [EngineerX](http://a8c390f2223364021a14ec3fb45263a7-1113280492.us-east-2.elb.amazonaws.com) is an open source web application designed for engineers and specialists. It lets them share their ideas, create tutorials, represent themselves, employ other specialists and ...
